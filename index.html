@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,39 +25,36 @@
             overflow-y: scroll;
             height: 100vh;
             scroll-behavior: smooth;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+            perspective: 2000px; /* High perspective for 3D depth */
         }
-        .snap-container::-webkit-scrollbar { display: none; }
         .snap-slide {
             scroll-snap-align: start;
             height: 100vh;
             width: 100%;
             position: relative;
             transform-style: preserve-3d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
+        ::-webkit-scrollbar { display: none; }
         .heading-font { font-family: 'Syncopate', sans-serif; }
+        
+        /* Industrial Hydraulic Feel */
+        .hydraulic-shadow {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.1);
+        }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@18.3.1",
-    "react-dom": "https://esm.sh/react-dom@18.3.1",
-    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
-    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
-    "react/": "https://esm.sh/react@18.3.1/",
-    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
-    "framer-motion": "https://esm.sh/framer-motion@11.11.17?bundle&deps=react@18.3.1",
-    "lucide-react": "https://esm.sh/lucide-react@0.474.0?bundle&deps=react@18.3.1"
+    "lucide-react": "https://esm.sh/lucide-react@^0.474.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "framer-motion": "https://esm.sh/framer-motion@^12.34.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4"
   }
 }
 </script>
 </head>
 <body>
     <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
