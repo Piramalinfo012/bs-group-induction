@@ -14,154 +14,154 @@ export const INDUCTION_FLOW_DAY_1: OrientationSlot[] = [
     time: "10:00 – 10:30", 
     session: "Welcome & Registration", 
     conductedBy: "HR Team",
-    description: "Your official journey begins! Our HR team will assist you with the onboarding registration, document verification (ID, Education, Experience), and issue your personalized Welcome Kit including the Employee Handbook."
+    description: "Welcome! Our HR team will help you with registration and check your documents. You will also get your Welcome Kit and Employee Handbook."
   },
   { 
     time: "10:30 – 11:00", 
-    session: "Introduction of New Employees", 
+    session: "Introduction", 
     conductedBy: "HR",
-    description: "A chance to meet your future collaborators. We foster a culture of transparency; this ice-breaking session allows everyone to share their aspirations, background, and unique skills with the team."
+    description: "Meet your new team members. This is a friendly session to share who you are and what you do."
   },
   { 
     time: "11:00 – 12:00", 
-    session: "About the Company", 
+    session: "About Our Company", 
     conductedBy: "Senior Management",
-    description: "Experience the legacy of B. S. Sponge Private Limited. We'll cover our evolution from a vision in 2000 to reaching 345,000 TPA capacity in 2023. Understanding our 'History, Vision, Mission, and Values' is key to alignment."
+    description: "Learn about B. S. Sponge. We will share our story, from where we started to where we are now, and our future goals."
   },
   { 
     time: "12:00 – 12:30", 
-    session: "Organization Structure", 
+    session: "How We Work", 
     conductedBy: "HR",
-    description: "Learn how we operate. We'll explain the hierarchy of BS Group, key reporting lines, and how our 8+ specialized departments (Sales, Finance, Production, HR, IT, etc.) work together like a well-oiled machine."
+    description: "Understand our company structure. We will show you the different departments like Sales, Production, and IT, and how we all work together."
   },
   { 
     time: "12:30 – 01:30", 
     session: "Lunch Break", 
     conductedBy: "—",
-    description: "Time for nourishment and networking. Join us at the canteen for a curated meal where you can interact with colleagues across different departments in a relaxed environment.",
+    description: "It's time for lunch. Enjoy a meal at the canteen and chat with your colleagues.",
     isBreak: true
   },
   { 
     time: "01:30 – 02:30", 
-    session: "HR Policies", 
+    session: "HR Rules & Policies", 
     conductedBy: "HR",
-    description: "Knowledge is power. We deep-dive into the Attendance Policy (90% target), Leave Policy (Casual, Marriage, Bereavement), and our ethical Code of Conduct to ensure a disciplined and professional workspace."
+    description: "We will explain important rules like attendance, leave types (Casual, Medical, etc.), and how to maintain good conduct at work."
   },
   { 
     time: "02:30 – 03:15", 
-    session: "Compensation & Benefits", 
+    session: "Salary & Benefits", 
     conductedBy: "HR",
-    description: "We care for you. Detailed walkthrough of the payroll process, EPF & ESIC benefits, Group Insurance (up to ₹2 Lakh coverage), and special allowances like Child Education reimbursement for eligible employees."
+    description: "Learn about your salary, PF, insurance, and other benefits like help with children's education."
   },
   { 
     time: "03:15 – 03:30", 
     session: "Tea Break", 
     conductedBy: "—",
-    description: "A quick refreshment break. Grab a cup of tea or coffee to stay energized for the technical and digital orientation sessions coming up.",
+    description: "Take a short break. Have some tea or coffee and recharge.",
     isBreak: true
   },
   { 
     time: "03:30 – 04:30", 
-    session: "IT Systems & Tools", 
+    session: "IT & Computer Access", 
     conductedBy: "IT Team",
-    description: "Get connected. Our IT experts will help you set up your official Email ID, ERP login, and brief you on data security, digital resource usage, and internal ticketing for technical support."
+    description: "Our IT team will set up your email and system login. They will also explain how to keep data safe and get technical support."
   },
   { 
     time: "04:30 – 05:00", 
-    session: "Q&A and Wrap-up", 
+    session: "Q&A and Closing", 
     conductedBy: "HR",
-    description: "Clarify any doubts. This open session is for you to ask questions about today's modules. We'll wrap up with a quick feedback form to help us improve your onboarding experience."
+    description: "Any questions? Ask us anything about today. We will also ask for your feedback to improve."
   }
 ];
 
 export const DEPARTMENTS = [
-  { name: "Sales & Marketing", description: "Driving growth and client relationships.", icon: "TrendingUp" },
-  { name: "Finance & Accounts", description: "Precision in budgeting and financial health.", icon: "CreditCard" },
-  { name: "HR & Admin", description: "Nurturing talent and workplace culture.", icon: "Users" },
-  { name: "Production", description: "Heart of our manufacturing excellence.", icon: "Factory" },
-  { name: "Quality Control", description: "Ensuring zero-defect steel production.", icon: "ShieldCheck" },
-  { name: "Maintenance", description: "Keeping our massive infrastructure running.", icon: "Activity" },
-  { name: "IT & Systems", description: "Digital backbone of our operations.", icon: "Laptop" },
-  { name: "Safety (EHS)", description: "Environment, Health, and Safety first.", icon: "HardHat" }
+  { name: "Sales & Marketing", description: "Getting customers and selling our products.", icon: "TrendingUp" },
+  { name: "Finance & Accounts", description: "Managing money and budgets.", icon: "CreditCard" },
+  { name: "HR & Admin", description: "Taking care of employees and office.", icon: "Users" },
+  { name: "Production", description: "Making our steel products.", icon: "Factory" },
+  { name: "Quality Control", description: "Checking product quality properly.", icon: "ShieldCheck" },
+  { name: "Maintenance", description: "Fixing machines and equipment.", icon: "Activity" },
+  { name: "IT & Systems", description: "Managing computers and software.", icon: "Laptop" },
+  { name: "Safety (EHS)", description: "Keeping everyone safe at work.", icon: "HardHat" }
 ];
 
 export const INDUCTION_DATA: InductionData = {
   companyName: "B. S. Sponge Private Limited",
-  tagline: "Making Strength. Building Future.",
+  tagline: "Building Strength together.",
   mdMessage: {
     name: "Mr. Ashish Agrawal",
     title: "Managing Director",
-    text: "At BS Group, we don't just produce steel; we forge foundations for the future. Every employee is a pillar of our strength, and together we aim to redefine technical excellence in the global power and steel division."
+    text: "At BS Group, we build the future. Every employee is important. Together, we want to be the best in the steel industry."
   },
   timeline: [
-    { year: "2000", event: "Founded in Taraimal, Raigarh." },
-    { year: "2015", event: "Integrated German Thermex technology for TMT bars." },
-    { year: "2023", event: "Reached 345,000 TPA capacity and Ferro Alloys launch." },
-    { year: "2024", event: "Entered the Steel Pipe industry with BS Pipes." },
-    { year: "2026", event: "Vision 2026: Global Expansion & Sustainability Drive." }
+    { year: "2000", event: "Started in Raigarh." },
+    { year: "2015", event: "Used new German technology." },
+    { year: "2023", event: "Increased production capacity." },
+    { year: "2024", event: "Started making Steel Pipes." },
+    { year: "2026", event: "Planning global growth." }
   ],
-  vision: "To be the leading steel manufacturer in India and beyond, recognized for our cutting-edge technology, sustainability, and ability to drive progress.",
-  mission: "To deliver unparalleled quality and innovation in steel production, enhancing infrastructure and industry standards while committing to sustainable practices.",
+  vision: "To be a top steel maker in India, known for good technology and green practices.",
+  mission: "To make high-quality steel and improve infrastructure while protecting the environment.",
   businessVerticals: [
-    { title: "Sponge Iron", description: "Primary raw material for steel-making.", icon: "factory" },
-    { title: "BS TMX Bars", description: "Premium high-strength construction bars.", icon: "activity" },
-    { title: "BS Pipes", description: "Precision-engineered industrial piping.", icon: "pipe" },
-    { title: "Ferro Alloys", description: "Critical additive for advanced metallurgy.", icon: "layers" }
+    { title: "Sponge Iron", description: "Main material for making steel.", icon: "factory" },
+    { title: "BS TMX Bars", description: "Strong bars for construction.", icon: "activity" },
+    { title: "BS Pipes", description: "Pipes for industrial use.", icon: "pipe" },
+    { title: "Ferro Alloys", description: "Material for special steel.", icon: "layers" }
   ],
   policies: {
     codeOfConduct: {
       dos: [
-        "Follow company regulations & lawful instructions.",
-        "Maintain strict confidentiality during/after service.",
-        "Maintain neat appearance & personal hygiene.",
-        "Use company digital resources responsibly."
+        "Follow rules & instructions.",
+        "Keep company secrets safe.",
+        "Look neat & clean.",
+        "Use computers carefully."
       ],
       donts: [
-        "Don't consume intoxicants on duty.",
-        "Don't disclose sensitive institutional documents.",
-        "Don't misuse company assets or resources.",
-        "Don't engage in private trade without approval."
+        "No alcohol/drugs on duty.",
+        "Don't share private papers.",
+        "Don't misuse company items.",
+        "No other business work."
       ]
     },
     attendance: {
       guidelines: [
-        "90% minimum monthly attendance required.",
-        "15 minutes late relaxation allowed (Buffer).",
-        "Max 4 Late-In entries per month allowed.",
-        "2 hours leave during office hours allowed/month."
+        "90% monthly attendance needed.",
+        "15 mins late allowed.",
+        "Max 4 Late-ins per month.",
+        "2 hours short leave monthly."
       ],
       timing: {
         corporate: "09:00 AM to 06:30 PM",
-        breakfast: "15m (11:00 AM Slot)",
-        lunch: "45m (01:30 PM Slot)"
+        breakfast: "15 mins (11:00 AM)",
+        lunch: "45 mins (01:30 PM)"
       }
     },
     leave: {
-      casual: ["12 Days per financial year", "Pro-rata basis joining month"],
-      marriage: ["5 Days for self-marriage", "15 days prior notice"],
-      bereavement: ["10 Days for death of parent"],
+      casual: ["12 Days per year", "Calculated from joining"],
+      marriage: ["5 Days for your marriage", "Tell 15 days before"],
+      bereavement: ["10 Days for parent loss"],
       encashment: {
-        criteria: ["CLs & Coffs only", "Cut-off Mar 31st"],
-        formula: "Eligible Days × (Salary / 30)"
+        criteria: ["CLs & Coffs only", "End of March"],
+        formula: "Based on salary"
       }
     },
     travel: {
-      guidelines: ["Prior HOD approval is mandatory", "Use CPA (Company Accommodation)", "Submit bills within 7 days"],
+      guidelines: ["Manager approval needed", "Stay in Company Guest House", "Give bills in 7 days"],
       allowances: [
         { grade: "Grade I", lodging: "₹3000", boarding: "₹1200", travel: "Air/AC Train", conveyance: "Taxi/Auto" },
         { grade: "Grade II", lodging: "₹2000", boarding: "₹1000", travel: "Air/AC Train", conveyance: "Taxi/Auto" }
       ]
     },
     insurance: {
-      core: ["Accidental Death", "Permanent Total Disability", "Temporary Total Disablement"],
-      medical: ["Accidental Hospitalization: ₹2L", "Ambulance: ₹2K"],
-      exclusions: ["Suicide/Self-harm", "Radioactivity risks", "Criminal acts"]
+      core: ["Accident Cover", "Disability Cover", "Injury Cover"],
+      medical: ["Hospital Cover: ₹2 Lakhs", "Ambulance: ₹2000"],
+      exclusions: ["Self-harm", "Illegal acts", "Risky behavior"]
     },
     childEducation: {
-      eligibility: "Employees earning ≤ ₹30,000/month",
-      benefit: "50% academic fees reimbursement",
+      eligibility: "Salary <= ₹30,000/month",
+      benefit: "50% of school fees back",
       limit: "₹5,000 per child/month",
-      applicability: "Extended to max 2 children"
+      applicability: "Max 2 children"
     }
   }
 };

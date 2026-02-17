@@ -19,7 +19,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
+      staggerChildren: 0.1,
       delayChildren: 0.1,
     }
   }
@@ -27,19 +27,22 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { 
-    y: 60, 
+    y: 50, 
     opacity: 0, 
-    scale: 0.95,
-    filter: 'blur(10px)' 
+    scale: 0.9,
+    rotateX: -15,
+    z: -100
   },
   visible: { 
     y: 0, 
     opacity: 1,
     scale: 1,
-    filter: 'blur(0px)',
+    rotateX: 0,
+    z: 0,
     transition: { 
-      duration: 1.2, 
-      ease: [0.16, 1, 0.3, 1] 
+      type: "spring",
+      bounce: 0.4,
+      duration: 1.5
     }
   }
 };
@@ -52,7 +55,7 @@ const CorporatePillar3D = () => (
       animate={{ rotateY: 360, y: [0, -15, 0] }}
       transition={{ rotateY: { duration: 25, repeat: Infinity, ease: "linear" }, y: { duration: 6, repeat: Infinity, ease: "easeInOut" } }}
       className="relative w-48 h-48 md:w-56 md:h-56"
-      style={{ transformStyle: 'preserve-3d' }}
+      style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
     >
       <div className="absolute inset-0 bg-white border-[6px] border-orange-600/10 rounded-xl flex items-center justify-center overflow-hidden shadow-2xl" style={{ transform: 'translateZ(28px)' }}>
         <img src="https://i.ibb.co/hxLDF92j/Screenshot-2026-02-16-221710.png" alt="BS Logo" className="w-[85%] h-auto relative z-10" />
@@ -77,6 +80,162 @@ const DirectorProfile3D = () => (
           <p className="text-neutral-400 font-black uppercase text-[10px] tracking-[0.4em] mt-6">Managing Director</p>
         </div>
       </div>
+    </motion.div>
+  </div>
+);
+
+const DigitalCore3D = () => (
+  <div className="relative w-64 h-64 md:w-96 md:h-96 flex items-center justify-center" style={{ perspective: '1200px' }}>
+    <motion.div 
+      animate={{ rotateY: 360, rotateX: 360 }}
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      className="relative w-32 h-32 md:w-48 md:h-48"
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      <div className="absolute inset-0 border-4 border-orange-500/30 rounded-xl" style={{ transform: 'translateZ(60px)' }} />
+      <div className="absolute inset-0 border-4 border-orange-500/30 rounded-xl" style={{ transform: 'rotateY(90deg) translateZ(60px)' }} />
+      <div className="absolute inset-0 border-4 border-orange-500/30 rounded-xl" style={{ transform: 'rotateX(90deg) translateZ(60px)' }} />
+      
+      <div className="absolute inset-0 bg-orange-600/10 backdrop-blur-sm border-2 border-orange-400/50 rounded-lg flex items-center justify-center shadow-[0_0_50px_rgba(255,100,0,0.4)]" style={{ transform: 'translateZ(30px)' }}>
+        <Cpu size={40} className="text-orange-400 animate-pulse" />
+      </div>
+    </motion.div>
+    
+    {/* Orbiting Binary Ring 1 */}
+    <motion.div 
+      animate={{ rotateZ: 360, rotateX: 45 }}
+      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+      className="absolute w-56 h-56 md:w-80 md:h-80 rounded-full border border-orange-500/20 border-dashed"
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+       <div className="absolute top-0 left-1/2 -translate-x-1/2 text-[10px] md:text-xs text-orange-500 font-mono">10110</div>
+       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[10px] md:text-xs text-orange-500 font-mono">01001</div>
+    </motion.div>
+
+    {/* Orbiting Binary Ring 2 */}
+    <motion.div 
+      animate={{ rotateZ: -360, rotateY: 45 }}
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      className="absolute w-48 h-48 md:w-72 md:h-72 rounded-full border border-orange-300/10 border-dotted"
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 text-[10px] md:text-xs text-orange-400 font-mono">1</div>
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[10px] md:text-xs text-orange-400 font-mono">0</div>
+    </motion.div>
+  </div>
+);
+
+const ServerBlock3D = () => (
+  <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center" style={{ perspective: '1000px' }}>
+    <motion.div 
+      animate={{ rotateY: 360 }}
+      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+      className="relative w-32 h-40 md:w-40 md:h-52 bg-neutral-900 border-2 border-orange-500/50 rounded-xl flex flex-col items-center justify-between py-4 shadow-[0_0_30px_rgba(255,77,0,0.2)]"
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      {[...Array(5)].map((_, i) => (
+         <div key={i} className="w-24 md:w-32 h-2 bg-orange-600/20 rounded-full animate-pulse" />
+      ))}
+      <div className="absolute inset-0 bg-orange-500/10 rounded-xl" style={{ transform: 'translateZ(-20px)' }} />
+      <div className="absolute inset-0 bg-orange-500/10 rounded-xl" style={{ transform: 'translateZ(20px)' }} />
+    </motion.div>
+  </div>
+);
+
+const CoinStack3D = () => (
+  <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center" style={{ perspective: '1000px' }}>
+    <motion.div 
+      animate={{ rotateY: 360, rotateX: 10 }}
+      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+      className="relative w-32 h-32 md:w-40 md:h-40"
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      {[0, 15, 30].map((y, i) => (
+        <div key={i} className="absolute inset-0 rounded-full border-4 border-orange-500 bg-neutral-900 flex items-center justify-center text-orange-500 font-bold text-2xl" style={{ transform: `translateY(${-y}px) rotateX(90deg)` }}>
+          ₹
+        </div>
+      ))}
+    </motion.div>
+  </div>
+);
+
+const GearAssembly3D = () => (
+  <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+    <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute">
+      <Settings size={120} className="text-orange-600" />
+    </motion.div>
+    <motion.div animate={{ rotate: -360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute">
+      <Settings size={80} className="text-neutral-700" />
+    </motion.div>
+  </div>
+);
+
+const DocumentStack3D = () => (
+  <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center" style={{ perspective: '1000px' }}>
+    <motion.div 
+      animate={{ rotateY: [0, 10, 0] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      className="relative w-32 h-40 md:w-40 md:h-52 bg-white text-black p-4 rounded-lg shadow-2xl flex flex-col gap-2"
+      style={{ transform: 'rotateZ(-5deg)' }}
+    >
+      <div className="h-2 w-2/3 bg-neutral-300 rounded" />
+      <div className="h-2 w-full bg-neutral-200 rounded" />
+      <div className="h-2 w-full bg-neutral-200 rounded" />
+      <div className="absolute top-0 right-0 p-2"><div className="w-4 h-4 bg-orange-600 rounded-full" /></div>
+    </motion.div>
+  </div>
+);
+
+const VisionGlobe3D = () => (
+  <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center" style={{ perspective: '1000px' }}>
+    <motion.div 
+      animate={{ rotateY: 360, rotateX: 15 }}
+      transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+      className="relative w-32 h-32 md:w-48 md:h-48 rounded-full border border-orange-500/30"
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      {[0, 45, 90, 135].map((deg, i) => (
+        <div key={i} className="absolute inset-0 rounded-full border border-orange-500/20" style={{ transform: `rotateY(${deg}deg)` }} />
+      ))}
+      <div className="absolute inset-0 rounded-full border border-orange-500/20" style={{ transform: 'rotateX(90deg)' }} />
+      <div className="absolute inset-0 rounded-full bg-orange-600/10 backdrop-blur-sm" />
+      <div className="absolute inset-x-0 top-1/2 h-[1px] bg-orange-500/40" />
+      
+      <motion.div 
+         animate={{ rotate: -360 }}
+         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+         className="absolute -inset-4 border border-dashed border-orange-400/20 rounded-full"
+      />
+    </motion.div>
+  </div>
+);
+
+const MissionTarget3D = () => (
+  <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center" style={{ perspective: '1000px' }}>
+    <motion.div 
+      initial={{ rotateX: 40, rotateZ: -10 }}
+      animate={{ rotateZ: 350 }} 
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      className="relative w-32 h-32 md:w-48 md:h-48 flex items-center justify-center"
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+       {[1, 2, 3].map((i) => (
+         <div key={i} className="absolute rounded-full border-4 border-orange-500/30 shadow-[0_0_15px_rgba(255,77,0,0.1)]" 
+              style={{ 
+                width: `${100 - i * 20}%`, 
+                height: `${100 - i * 20}%`,
+                transform: `translateZ(${i * 10}px)` 
+              }} 
+         />
+       ))}
+       <div className="absolute w-4 h-4 bg-orange-600 rounded-full shadow-[0_0_20px_#ff4d00]" style={{ transform: 'translateZ(40px)' }} />
+       
+       <motion.div 
+         animate={{ z: [100, 40] }}
+         transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
+         className="absolute w-2 h-16 bg-white w-1"
+         style={{ transform: 'rotateX(90deg) translateY(-50%)' }}
+       />
     </motion.div>
   </div>
 );
@@ -137,8 +296,9 @@ const App: React.FC = () => {
               variants={containerVariants} 
               initial="hidden" 
               whileInView="visible" 
-              viewport={{ once: false, amount: 0.2 }} 
+              viewport={{ once: true, amount: 0.2 }} 
               className="max-w-6xl w-full relative z-10"
+              style={{ willChange: "opacity, transform", perspective: "1000px" }}
             >
               {/* SLIDE: HERO */}
               {slide.type === 'hero' && (
@@ -188,12 +348,12 @@ const App: React.FC = () => {
               {slide.type === 'vision_mission' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <motion.div variants={itemVariants} className="p-10 md:p-16 bg-neutral-900/40 rounded-[4rem] border border-white/5 flex flex-col items-center text-center">
-                    <Globe size={80} className="text-orange-500 mb-8" />
+                     <VisionGlobe3D />
                     <h3 className="text-2xl md:text-4xl font-black heading-font mb-6 uppercase">Our Vision</h3>
                     <p className="text-lg md:text-xl text-neutral-400 font-light leading-relaxed">{INDUCTION_DATA.vision}</p>
                   </motion.div>
                   <motion.div variants={itemVariants} className="p-10 md:p-16 bg-neutral-900/40 rounded-[4rem] border border-white/5 flex flex-col items-center text-center">
-                    <Target size={80} className="text-orange-500 mb-8" />
+                     <MissionTarget3D />
                     <h3 className="text-2xl md:text-4xl font-black heading-font mb-6 uppercase">Our Mission</h3>
                     <p className="text-lg md:text-xl text-neutral-400 font-light leading-relaxed">{INDUCTION_DATA.mission}</p>
                   </motion.div>
@@ -265,7 +425,7 @@ const App: React.FC = () => {
                   </div>
                   <motion.div variants={itemVariants} className="lg:col-span-5 flex justify-center">
                     <div className="w-64 h-64 md:w-96 md:h-96 rounded-[5rem] bg-neutral-900 border-8 border-orange-500/20 flex items-center justify-center text-orange-600">
-                      {React.cloneElement(slide.icon as React.ReactElement, { size: 120, strokeWidth: 1 })}
+                      {slide.sub === "Phase 03" ? <GearAssembly3D /> : React.cloneElement(slide.icon as React.ReactElement, { size: 120, strokeWidth: 1 })}
                     </div>
                   </motion.div>
                 </div>
@@ -301,10 +461,7 @@ const App: React.FC = () => {
                      </div>
                    </div>
                    <motion.div variants={itemVariants} className="flex justify-center">
-                     <div className="w-80 h-80 rounded-full border-8 border-neutral-800 bg-neutral-900 flex items-center justify-center relative shadow-2xl">
-                        <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute w-1 h-32 bg-orange-600 origin-bottom bottom-1/2" />
-                        <Clock size={100} className="text-white/20" />
-                     </div>
+                     <DocumentStack3D />
                    </motion.div>
                 </div>
               )}
@@ -367,9 +524,7 @@ const App: React.FC = () => {
                     </motion.p>
                   </div>
                   <motion.div variants={itemVariants} className="flex justify-center">
-                    <div className="p-20 bg-orange-600 rounded-[5rem] text-black shadow-[0_40px_80px_rgba(255,77,0,0.3)]">
-                      <CreditCard size={120} strokeWidth={1} />
-                    </div>
+                    <CoinStack3D />
                   </motion.div>
                 </div>
               )}
@@ -391,9 +546,23 @@ const App: React.FC = () => {
 
               {/* SLIDE: IT SYSTEMS */}
               {slide.type === 'it_systems' && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                   <motion.div variants={itemVariants} className="flex justify-center">
-                      <Cpu size={240} className="text-orange-500 opacity-20" />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
+                   <div className="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden">
+                      {[...Array(20)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ top: -100, left: `${Math.random() * 100}%`, opacity: 0 }}
+                          animate={{ top: '100%', opacity: [0, 1, 0] }}
+                          transition={{ duration: Math.random() * 5 + 5, repeat: Infinity, ease: "linear", delay: Math.random() * 5 }}
+                          className="absolute text-orange-500/30 font-mono text-xs select-none"
+                        >
+                          {Math.random() > 0.5 ? '1' : '0'}
+                        </motion.div>
+                      ))}
+                   </div>
+                   <motion.div variants={itemVariants} className="flex justify-center relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-orange-600/5 to-transparent blur-3xl rounded-full" />
+                      <DigitalCore3D />
                    </motion.div>
                    <div>
                      <SlideHeader sub="Digital Core" title="IT Ecosystem" />
@@ -416,7 +585,7 @@ const App: React.FC = () => {
                 <div className="text-center">
                    <motion.div variants={itemVariants} className="mb-12"><HelpCircle size={120} className="text-orange-500 mx-auto" /></motion.div>
                    <motion.h2 variants={itemVariants} className="text-6xl md:text-9xl font-black heading-font tracking-tighter uppercase mb-10">ANY <span className="text-orange-600">DOUBTS?</span></motion.h2>
-                   <motion.p variants={itemVariants} className="text-2xl text-neutral-400 font-light tracking-[0.2em] uppercase">Open dialogue is the catalyst for growth.</p>
+                   <motion.p variants={itemVariants} className="text-2xl text-neutral-400 font-light uppercase tracking-[0.2em]">Open dialogue is the catalyst for growth.</motion.p>
                 </div>
               )}
 
@@ -432,8 +601,16 @@ const App: React.FC = () => {
                     <motion.p variants={itemVariants} className="text-xl md:text-2xl text-neutral-500 font-black uppercase tracking-[0.5em] mb-10 opacity-60">B. S. SPONGE PRIVATE LIMITED</motion.p>
                     <motion.button variants={itemVariants} whileHover={{ scale: 1.05, backgroundColor: '#fff', color: '#000' }} whileTap={{ scale: 0.95 }} onClick={() => containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })} className="px-12 md:px-20 py-6 md:py-8 rounded-[2rem] bg-orange-600 text-black font-black text-lg md:text-xl uppercase tracking-[0.4em] shadow-[0_0_60px_rgba(255,77,0,0.3)] transition-all">Restart Tour</motion.button>
                   </div>
-                  <motion.div variants={itemVariants} className="mt-20 w-full pt-10 border-t border-white/5">
-                    <p className="text-sm md:text-lg text-orange-500 font-black uppercase tracking-[0.6em] opacity-80">Developed By Deepak Sahu</p>
+                  <motion.div variants={itemVariants} className="mt-20 w-full pt-10 border-t border-white/5 flex flex-col items-center">
+                    <p className="text-sm md:text-lg text-neutral-500 font-bold uppercase tracking-[0.4em] mb-2">Designed & Developed By</p>
+                    <motion.div 
+                      animate={{ textShadow: ["0 0 10px #ff4d00", "0 0 20px #ff4d00", "0 0 10px #ff4d00"] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <h3 className="text-xl md:text-3xl font-black uppercase tracking-[0.2em] text-white">
+                        DEEPAK <span className="text-orange-600">SAHU</span>
+                      </h3>
+                    </motion.div>
                   </motion.div>
                 </div>
               )}
