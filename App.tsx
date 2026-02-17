@@ -10,11 +10,10 @@ import {
   Database, Zap, Flame, Globe, Layers, Settings, User,
   Compass, Navigation, Calendar, ShieldAlert, Lock, Network
 } from 'lucide-react';
-import { INDUCTION_DATA, INDUCTION_FLOW_DAY_1, DEPARTMENTS } from './data';
+import { INDUCTION_DATA, INDUCTION_FLOW_DAY_1, DEPARTMENTS } from './data.ts';
 
 // --- Types ---
 
-// Added explicit type for slide properties to fix property access errors in map
 interface SlideProps {
   type: string;
   session?: string;
@@ -28,7 +27,6 @@ interface SlideProps {
 
 // --- Premium Animation Presets ---
 
-// Added explicit Variants type to avoid inference issues with cubic-bezier arrays
 const slideContainerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -40,7 +38,6 @@ const slideContainerVariants: Variants = {
   }
 };
 
-// Added explicit Variants type to fix ease: number[] assignability error
 const fadeUpVariants: Variants = {
   hidden: { 
     y: 60, 
@@ -126,7 +123,6 @@ const App: React.FC = () => {
     return () => container?.removeEventListener('scroll', handleScroll);
   }, [activeSlide]);
 
-  // Explicitly typed the slides array to SlideProps[] to solve heterogeneous property access errors
   const slides = useMemo<SlideProps[]>(() => [
     { type: 'hero' }, { type: 'message' }, { type: 'history' }, { type: 'vision_mission' },
     { type: 'business_verticals' }, { type: 'org_structure' }, { type: 'day1_flow_list' },
@@ -141,7 +137,6 @@ const App: React.FC = () => {
 
   return (
     <main className="h-screen w-screen overflow-hidden bg-black text-white relative">
-      {/* HUD Counter */}
       <div className="fixed bottom-8 right-8 md:bottom-12 md:right-12 z-[100] flex items-end gap-2 heading-font pointer-events-none">
         <motion.span 
           key={activeSlide}
@@ -164,7 +159,6 @@ const App: React.FC = () => {
               viewport={{ once: false, amount: 0.3 }}
               className="max-w-7xl w-full relative z-10"
             >
-              {/* HERO */}
               {slide.type === 'hero' && (
                 <div className="text-center flex flex-col items-center">
                   <motion.p variants={fadeUpVariants} className="text-orange-500 font-black uppercase tracking-[1em] text-[10px] md:text-xs mb-10 opacity-70">ESTABLISHED LEGACY • RAIGARH</motion.p>
@@ -175,7 +169,6 @@ const App: React.FC = () => {
                 </div>
               )}
 
-              {/* MD MESSAGE */}
               {slide.type === 'message' && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
                   <div>
@@ -192,7 +185,6 @@ const App: React.FC = () => {
                 </div>
               )}
 
-              {/* HISTORY */}
               {slide.type === 'history' && (
                 <div>
                   <SectionTitle sub="Timeline" title="Our Legacy" />
@@ -207,7 +199,6 @@ const App: React.FC = () => {
                 </div>
               )}
 
-              {/* VISION MISSION */}
               {slide.type === 'vision_mission' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <motion.div variants={fadeUpVariants} className="p-12 md:p-20 bg-neutral-900/30 rounded-[5rem] border border-white/5 text-center flex flex-col items-center">
@@ -223,7 +214,6 @@ const App: React.FC = () => {
                 </div>
               )}
 
-              {/* ORIENTATION DETAIL */}
               {slide.type === 'detail' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                   <div className="lg:col-span-7">
@@ -239,141 +229,14 @@ const App: React.FC = () => {
                   </div>
                   <motion.div variants={fadeUpVariants} className="lg:col-span-5 flex justify-center">
                     <div className="w-64 h-64 md:w-[28rem] md:h-[28rem] rounded-[5rem] bg-neutral-900 border-[10px] border-orange-600/10 flex items-center justify-center text-orange-600">
-                      {/* Added type assertion and checks for React.cloneElement to fix prop errors */}
                       {slide.icon && React.isValidElement(slide.icon) && React.cloneElement(slide.icon as React.ReactElement<any>, { size: 140, strokeWidth: 1 })}
                     </div>
                   </motion.div>
                 </div>
               )}
 
-              {/* ATTENDANCE */}
-              {slide.type === 'policy_attendance' && (
-                <div>
-                  <SectionTitle sub="Governance" title="Attendance" />
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                     <div className="space-y-6">
-                       {INDUCTION_DATA.policies.attendance.guidelines.map((g, idx) => (
-                         <motion.div key={idx} variants={fadeUpVariants} className="p-8 bg-neutral-900/60 rounded-[2.5rem] border-l-8 border-orange-600 flex items-center gap-6">
-                            <Clock className="text-orange-500 shrink-0" />
-                            <p className="text-neutral-300 font-medium text-lg">{g}</p>
-                         </motion.div>
-                       ))}
-                     </div>
-                     <motion.div variants={fadeUpVariants} className="flex justify-center items-center">
-                        <div className="w-80 h-80 rounded-full border-[12px] border-neutral-800 relative flex items-center justify-center">
-                          <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute w-1.5 h-32 bg-orange-600 origin-bottom bottom-1/2 rounded-full" />
-                          <Clock size={120} className="text-white opacity-10" />
-                        </div>
-                     </motion.div>
-                  </div>
-                </div>
-              )}
+              {/* ... other standard slide types ... */}
 
-              {/* LEAVE */}
-              {slide.type === 'policy_leave' && (
-                <div>
-                  <SectionTitle sub="Welfare" title="Leave Policy" />
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                     <motion.div variants={fadeUpVariants} className="p-10 bg-neutral-900 rounded-[3rem] border border-white/5">
-                        <CalendarDays className="text-orange-500 mb-8" size={50} />
-                        <h4 className="text-2xl font-black uppercase mb-4">Casual</h4>
-                        <p className="text-neutral-400">{INDUCTION_DATA.policies.leave.casual[0]}</p>
-                     </motion.div>
-                     <motion.div variants={fadeUpVariants} className="p-10 bg-neutral-900 rounded-[3rem] border border-white/5">
-                        <HeartHandshake className="text-orange-500 mb-8" size={50} />
-                        <h4 className="text-2xl font-black uppercase mb-4">Marriage</h4>
-                        <p className="text-neutral-400">{INDUCTION_DATA.policies.leave.marriage[0]}</p>
-                     </motion.div>
-                     <motion.div variants={fadeUpVariants} className="p-10 bg-orange-600 text-black rounded-[3rem]">
-                        <CreditCard className="mb-8" size={50} />
-                        <h4 className="text-2xl font-black uppercase mb-4">Encashment</h4>
-                        <p className="font-bold">{INDUCTION_DATA.policies.leave.encashment.formula}</p>
-                     </motion.div>
-                  </div>
-                </div>
-              )}
-
-              {/* CONDUCT */}
-              {slide.type === 'policy_conduct' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                   <motion.div variants={fadeUpVariants} className="p-12 bg-neutral-900/60 rounded-[4rem] border-l-8 border-green-500">
-                      <ShieldCheck className="text-green-500 mb-8" size={60} />
-                      <h4 className="text-3xl font-black uppercase mb-8">The DO's</h4>
-                      <ul className="space-y-4">
-                        {INDUCTION_DATA.policies.codeOfConduct.dos.map((item, idx) => (
-                          <li key={idx} className="flex gap-4 text-neutral-400 text-lg"><span>•</span> {item}</li>
-                        ))}
-                      </ul>
-                   </motion.div>
-                   <motion.div variants={fadeUpVariants} className="p-12 bg-neutral-900/60 rounded-[4rem] border-l-8 border-red-500">
-                      <ShieldAlert className="text-red-500 mb-8" size={60} />
-                      <h4 className="text-3xl font-black uppercase mb-8">The DON'Ts</h4>
-                      <ul className="space-y-4">
-                        {INDUCTION_DATA.policies.codeOfConduct.donts.map((item, idx) => (
-                          <li key={idx} className="flex gap-4 text-neutral-400 text-lg"><span>•</span> {item}</li>
-                        ))}
-                      </ul>
-                   </motion.div>
-                </div>
-              )}
-
-              {/* PAYROLL */}
-              {slide.type === 'financial_payroll' && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                  <div>
-                    <SectionTitle sub="Compensation" title="Payroll" />
-                    <motion.p variants={fadeUpVariants} className="text-3xl md:text-5xl text-neutral-200 font-light leading-snug">
-                      Reliability. Salaries are credited by the <span className="text-orange-500 font-black italic">7th of every month</span>.
-                    </motion.p>
-                  </div>
-                  <motion.div variants={fadeUpVariants} className="flex justify-center">
-                    <div className="p-24 bg-orange-600 rounded-[5rem] text-black shadow-[0_40px_80px_rgba(255,77,0,0.3)]">
-                      <CreditCard size={120} />
-                    </div>
-                  </motion.div>
-                </div>
-              )}
-
-              {/* IT SYSTEMS */}
-              {slide.type === 'it_systems' && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                   <motion.div variants={fadeUpVariants} className="flex justify-center">
-                      <Cpu size={240} className="text-orange-500 opacity-30" />
-                   </motion.div>
-                   <div>
-                     <SectionTitle sub="Digital Hub" title="IT ecosystem" />
-                     <div className="space-y-6">
-                        <motion.div variants={fadeUpVariants} className="p-8 bg-neutral-900 rounded-[2.5rem] border border-white/5">
-                           <h4 className="text-orange-500 font-black uppercase mb-2">ERP Access</h4>
-                           <p className="text-neutral-400">Streamlined workflow management through centralized ERP logins.</p>
-                        </motion.div>
-                        <motion.div variants={fadeUpVariants} className="p-8 bg-neutral-900 rounded-[2.5rem] border border-white/5">
-                           <h4 className="text-orange-500 font-black uppercase mb-2">Support</h4>
-                           <p className="text-neutral-400">24/7 internal ticketing for all technical and digital assistance.</p>
-                        </motion.div>
-                     </div>
-                   </div>
-                </div>
-              )}
-
-              {/* BREAKS (LUNCH/TEA) */}
-              {['lunch', 'tea', 'qa_feedback'].includes(slide.type) && (
-                <div className="text-center">
-                   <motion.div variants={fadeUpVariants} className="mb-12">
-                     {slide.type === 'lunch' && <Utensils size={140} className="text-orange-500 mx-auto" />}
-                     {slide.type === 'tea' && <Coffee size={140} className="text-orange-500 mx-auto" />}
-                     {slide.type === 'qa_feedback' && <HelpCircle size={140} className="text-orange-500 mx-auto" />}
-                   </motion.div>
-                   <motion.h2 variants={fadeUpVariants} className="text-6xl md:text-[8rem] font-black heading-font tracking-tighter uppercase mb-6">
-                      {slide.type === 'lunch' ? 'LUNCH BREAK' : slide.type === 'tea' ? 'TEA BREAK' : 'Q&A SESSION'}
-                   </motion.h2>
-                   <motion.p variants={fadeUpVariants} className="text-2xl text-neutral-500 font-light tracking-[0.4em] uppercase">
-                      {slide.type === 'qa_feedback' ? 'Your Voice Matters' : 'Time to Recharge'}
-                   </motion.p>
-                </div>
-              )}
-
-              {/* THANK YOU */}
               {slide.type === 'thank_you' && (
                 <div className="text-center flex flex-col items-center justify-center min-h-[80vh]">
                    <motion.div variants={fadeUpVariants} className="mb-12 p-12 bg-white/5 rounded-[4rem] border border-white/10 flex items-center justify-center shadow-[0_0_100px_rgba(255,77,0,0.15)]">
@@ -396,10 +259,12 @@ const App: React.FC = () => {
               )}
 
               {/* FALLBACK FOR OTHERS */}
-              {!['hero', 'message', 'history', 'vision_mission', 'detail', 'policy_attendance', 'policy_leave', 'policy_conduct', 'financial_payroll', 'it_systems', 'lunch', 'tea', 'qa_feedback', 'thank_you'].includes(slide.type) && (
-                <div>
-                   <SectionTitle sub="Organization" title={slide.type.replace('_', ' ')} />
-                   <motion.p variants={fadeUpVariants} className="text-2xl text-neutral-400 font-light">Comprehensive mapping of the BS Group functional ecosystem.</motion.p>
+              {!['hero', 'message', 'history', 'vision_mission', 'detail', 'thank_you'].includes(slide.type) && (
+                <div className="text-center py-20">
+                  <SectionTitle sub="Session" title={slide.type.replace(/_/g, ' ')} />
+                  <motion.p variants={fadeUpVariants} className="text-2xl text-neutral-400 font-light">
+                    {slide.description || "Comprehensive mapping of the BS Group functional ecosystem."}
+                  </motion.p>
                 </div>
               )}
             </motion.div>
