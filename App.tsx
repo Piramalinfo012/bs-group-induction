@@ -240,6 +240,80 @@ const MissionTarget3D = () => (
   </div>
 );
 
+const TeamSynergy3D = () => (
+  <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center" style={{ perspective: '1000px' }}>
+    <motion.div 
+      animate={{ rotateY: 360, rotateZ: 10 }}
+      transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+      className="relative w-32 h-32 md:w-48 md:h-48 flex items-center justify-center"
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+       {/* Central Core */}
+       <div className="absolute w-12 h-12 md:w-16 md:h-16 bg-orange-600 rounded-full shadow-[0_0_30px_#ff4d00]" style={{ transform: 'translateZ(0)' }} />
+       
+       {/* Orbiting Ring 1 */}
+       <motion.div 
+         animate={{ rotateX: 360 }}
+         transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+         className="absolute w-24 h-24 md:w-36 md:h-36 rounded-full border-2 border-orange-500/30"
+         style={{ transformStyle: 'preserve-3d' }}
+       >
+         <div className="absolute top-0 left-1/2 w-4 h-4 bg-white rounded-full shadow-[0_0_10px_white] -translate-x-1/2 -translate-y-1/2" />
+       </motion.div>
+
+       {/* Orbiting Ring 2 */}
+       <motion.div 
+         animate={{ rotateY: 360 }}
+         transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+         className="absolute w-32 h-32 md:w-48 md:h-48 rounded-full border border-orange-500/20"
+         style={{ transformStyle: 'preserve-3d' }}
+       >
+         <div className="absolute top-1/2 right-0 w-3 h-3 bg-orange-400 rounded-full shadow-[0_0_10px_orange] translate-x-1/2 -translate-y-1/2" />
+       </motion.div>
+       
+       {/* Orbiting Ring 3 */}
+       <motion.div 
+         animate={{ rotateZ: 360 }}
+         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+         className="absolute w-40 h-40 md:w-56 md:h-56 rounded-full border border-orange-500/10 border-dashed"
+         style={{ transformStyle: 'preserve-3d' }}
+       >
+         <div className="absolute bottom-0 left-1/2 w-2 h-2 bg-neutral-200 rounded-full -translate-x-1/2 translate-y-1/2" />
+       </motion.div>
+    </motion.div>
+  </div>
+);
+
+const Footer3D = () => (
+  <div className="relative flex flex-col items-center justify-center py-8" style={{ perspective: '800px' }}>
+    <p className="text-sm md:text-lg text-neutral-500 font-bold uppercase tracking-[0.4em] mb-6">Designed & Developed By</p>
+    <motion.div 
+      className="relative"
+      initial={{ rotateX: 20 }}
+      animate={{ rotateX: [20, 0, 20], rotateY: [-10, 10, -10] }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+       {/* Extrusion Layers */}
+       {[...Array(8)].map((_, i) => (
+         <h3 key={i} className="text-3xl md:text-5xl font-black uppercase tracking-[0.2em] text-orange-900 absolute top-0 left-0 select-none" 
+             style={{ transform: `translateZ(-${i * 2}px)`, opacity: 0.5 }}>
+           DEEPAK <span className="text-orange-800">SAHU</span>
+         </h3>
+       ))}
+       
+       {/* Front Layer */}
+       <h3 className="text-3xl md:text-5xl font-black uppercase tracking-[0.2em] text-white relative z-10"
+           style={{ transform: 'translateZ(1px)', textShadow: '0 0 20px rgba(255,77,0,0.6)' }}>
+         DEEPAK <span className="text-orange-500">SAHU</span>
+       </h3>
+       
+       {/* Reflection/Glow */}
+       <div className="absolute -inset-4 bg-orange-500/10 blur-xl rounded-full" style={{ transform: 'translateZ(-50px) scale(1.5)' }} />
+    </motion.div>
+  </div>
+);
+
 const SlideHeader = ({ sub, title }: { sub: string, title: string }) => (
   <motion.div variants={itemVariants} className="mb-8 md:mb-12">
     <motion.div initial={{ width: 0 }} whileInView={{ width: 60 }} transition={{ duration: 0.8 }} className="h-1 bg-orange-600 mb-4 md:mb-6" />
@@ -266,7 +340,7 @@ const App: React.FC = () => {
   }, [activeSlide]);
 
   const slideContent = useMemo(() => [
-    { type: 'hero' }, { type: 'message' }, { type: 'history' }, { type: 'vision_mission' },
+    { type: 'hero' }, { type: 'message' }, { type: 'history' }, { type: 'vision' }, { type: 'mission' },
     { type: 'business_verticals' }, { type: 'org_structure' }, { type: 'day1_flow_list' },
     { type: 'detail', ...INDUCTION_FLOW_DAY_1[0], icon: <Users />, sub: "Phase 01" },
     { type: 'detail', ...INDUCTION_FLOW_DAY_1[1], icon: <UserCheck />, sub: "Phase 02" },
@@ -345,18 +419,33 @@ const App: React.FC = () => {
               )}
 
               {/* SLIDE: VISION MISSION */}
-              {slide.type === 'vision_mission' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                  <motion.div variants={itemVariants} className="p-10 md:p-16 bg-neutral-900/40 rounded-[4rem] border border-white/5 flex flex-col items-center text-center">
+              {/* SLIDE: VISION */}
+              {slide.type === 'vision' && (
+                <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24 p-8">
+                  <motion.div variants={itemVariants} className="flex-shrink-0">
                      <VisionGlobe3D />
-                    <h3 className="text-2xl md:text-4xl font-black heading-font mb-6 uppercase">Our Vision</h3>
-                    <p className="text-lg md:text-xl text-neutral-400 font-light leading-relaxed">{INDUCTION_DATA.vision}</p>
                   </motion.div>
-                  <motion.div variants={itemVariants} className="p-10 md:p-16 bg-neutral-900/40 rounded-[4rem] border border-white/5 flex flex-col items-center text-center">
+                  <div className="text-center md:text-left">
+                    <SlideHeader sub="Future Focus" title="Our Vision" />
+                    <motion.p variants={itemVariants} className="text-lg md:text-2xl text-neutral-300 font-light leading-relaxed max-w-4xl">
+                      {INDUCTION_DATA.vision}
+                    </motion.p>
+                  </div>
+                </div>
+              )}
+
+              {/* SLIDE: MISSION */}
+              {slide.type === 'mission' && (
+                <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24 p-8">
+                  <motion.div variants={itemVariants} className="flex-shrink-0">
                      <MissionTarget3D />
-                    <h3 className="text-2xl md:text-4xl font-black heading-font mb-6 uppercase">Our Mission</h3>
-                    <p className="text-lg md:text-xl text-neutral-400 font-light leading-relaxed">{INDUCTION_DATA.mission}</p>
                   </motion.div>
+                  <div className="text-center md:text-left">
+                    <SlideHeader sub="Our Commitment" title="Our Mission" />
+                    <motion.p variants={itemVariants} className="text-lg md:text-2xl text-neutral-300 font-light leading-relaxed max-w-4xl">
+                      {INDUCTION_DATA.mission}
+                    </motion.p>
+                  </div>
                 </div>
               )}
 
@@ -425,7 +514,11 @@ const App: React.FC = () => {
                   </div>
                   <motion.div variants={itemVariants} className="lg:col-span-5 flex justify-center">
                     <div className="w-64 h-64 md:w-96 md:h-96 rounded-[5rem] bg-neutral-900 border-8 border-orange-500/20 flex items-center justify-center text-orange-600">
-                      {slide.sub === "Phase 03" ? <GearAssembly3D /> : React.cloneElement(slide.icon as React.ReactElement, { size: 120, strokeWidth: 1 })}
+                      {
+                        slide.sub === "Phase 03" ? <GearAssembly3D /> : 
+                        slide.sub === "Phase 01" ? <TeamSynergy3D /> :
+                        React.cloneElement(slide.icon as React.ReactElement, { size: 120, strokeWidth: 1 })
+                      }
                     </div>
                   </motion.div>
                 </div>
@@ -591,26 +684,18 @@ const App: React.FC = () => {
 
               {/* SLIDE: THANK YOU */}
               {slide.type === 'thank_you' && (
-                <div className="text-center max-w-4xl mx-auto flex flex-col items-center min-h-[80vh] justify-between py-10">
-                  <div className="flex-1 flex flex-col items-center justify-center">
-                    <motion.div variants={itemVariants} className="mb-10 p-10 bg-white/10 rounded-[3rem] backdrop-blur-2xl border border-white/20 flex items-center justify-center shadow-[0_0_80px_rgba(255,77,0,0.15)]">
-                      <img src="https://i.ibb.co/hxLDF92j/Screenshot-2026-02-16-221710.png" alt="Company Logo" className="h-28 md:h-44 w-auto object-contain drop-shadow-[0_0_20px_rgba(255,77,0,0.6)]" />
+                <div className="text-center max-w-4xl mx-auto flex flex-col items-center h-full justify-center py-4 md:py-8">
+                  <div className="flex-1 flex flex-col items-center justify-center scale-90 md:scale-100 origin-center">
+                    <motion.div variants={itemVariants} className="mb-6 md:mb-8 p-4 md:p-6 bg-white/10 rounded-[2.5rem] backdrop-blur-2xl border border-white/20 flex items-center justify-center shadow-[0_0_80px_rgba(255,77,0,0.15)]">
+                      <img src="https://i.ibb.co/hxLDF92j/Screenshot-2026-02-16-221710.png" alt="Company Logo" className="h-16 md:h-24 w-auto object-contain drop-shadow-[0_0_20px_rgba(255,77,0,0.6)]" />
                     </motion.div>
-                    <motion.div variants={itemVariants}><HeartHandshake size={80} className="text-orange-500 mb-6 opacity-40" /></motion.div>
-                    <motion.h2 variants={itemVariants} className="text-6xl md:text-8xl lg:text-9xl font-black heading-font tracking-tighter uppercase leading-[0.8] mb-10">THANK <span className="text-orange-600">YOU.</span></motion.h2>
-                    <motion.p variants={itemVariants} className="text-xl md:text-2xl text-neutral-500 font-black uppercase tracking-[0.5em] mb-10 opacity-60">B. S. SPONGE PRIVATE LIMITED</motion.p>
-                    <motion.button variants={itemVariants} whileHover={{ scale: 1.05, backgroundColor: '#fff', color: '#000' }} whileTap={{ scale: 0.95 }} onClick={() => containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })} className="px-12 md:px-20 py-6 md:py-8 rounded-[2rem] bg-orange-600 text-black font-black text-lg md:text-xl uppercase tracking-[0.4em] shadow-[0_0_60px_rgba(255,77,0,0.3)] transition-all">Restart Tour</motion.button>
+                    <motion.div variants={itemVariants}><HeartHandshake size={60} className="text-orange-500 mb-4 opacity-40" /></motion.div>
+                    <motion.h2 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-black heading-font tracking-tighter uppercase leading-[0.8] mb-6">THANK <span className="text-orange-600">YOU.</span></motion.h2>
+                    <motion.p variants={itemVariants} className="text-lg md:text-xl text-neutral-500 font-black uppercase tracking-[0.5em] mb-8 opacity-60">B. S. SPONGE PRIVATE LIMITED</motion.p>
+                    <motion.button variants={itemVariants} whileHover={{ scale: 1.05, backgroundColor: '#fff', color: '#000' }} whileTap={{ scale: 0.95 }} onClick={() => containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })} className="px-8 md:px-12 py-4 md:py-6 rounded-[2rem] bg-orange-600 text-black font-black text-lg md:text-xl uppercase tracking-[0.4em] shadow-[0_0_60px_rgba(255,77,0,0.3)] transition-all">Restart Tour</motion.button>
                   </div>
-                  <motion.div variants={itemVariants} className="mt-20 w-full pt-10 border-t border-white/5 flex flex-col items-center">
-                    <p className="text-sm md:text-lg text-neutral-500 font-bold uppercase tracking-[0.4em] mb-2">Designed & Developed By</p>
-                    <motion.div 
-                      animate={{ textShadow: ["0 0 10px #ff4d00", "0 0 20px #ff4d00", "0 0 10px #ff4d00"] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      <h3 className="text-xl md:text-3xl font-black uppercase tracking-[0.2em] text-white">
-                        DEEPAK <span className="text-orange-600">SAHU</span>
-                      </h3>
-                    </motion.div>
+                  <motion.div variants={itemVariants} className="mt-8 md:mt-12 w-full pt-6 border-t border-white/5 flex flex-col items-center scale-90 md:scale-100">
+                    <Footer3D />
                   </motion.div>
                 </div>
               )}

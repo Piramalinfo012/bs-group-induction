@@ -100,8 +100,8 @@ export const INDUCTION_DATA: InductionData = {
     { year: "2024", event: "Started making Steel Pipes." },
     { year: "2026", event: "Planning global growth." }
   ],
-  vision: "To be a top steel maker in India, known for good technology and green practices.",
-  mission: "To make high-quality steel and improve infrastructure while protecting the environment.",
+  vision: "To be the leading steel manufacturer in India and beyond, recognized for our cutting-edge technology, sustainability, and the ability to drive progress in the construction industry. We aim to forge a future where our steel is a cornerstone of development projects worldwide, contributing to safer, more efficient, and innovative building solutions.",
+  mission: "To deliver unparalleled quality and innovation in steel production, enhancing infrastructure and industry standards with our sponge iron, billets, and TMX bars. We commit to sustainable practices and superior customer service, ensuring every client receives products that exceed their expectations and contribute to long-lasting constructions.",
   businessVerticals: [
     { title: "Sponge Iron", description: "Main material for making steel.", icon: "factory" },
     { title: "BS TMX Bars", description: "Strong bars for construction.", icon: "activity" },
